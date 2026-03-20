@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Structurely × PlayFly — AI Fan Engagement Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0C1A3A; --navy2:#142248; --navy3:#1A2E5E;
+  --blue:#1565C0; --blue2:#1E88E5;
+  --red:#E53935; --red2:#C62828;
+  --green:#43A047; --greenl:#69F0AE;
+  --gold:#F9A825;
+  --emu-green:#006633; --emu-dark:#004422;
+  --white:#FFFFFF; --off:#F0F4FF;
+  --muted:#7B9CC4; --text:#1A2540;
+  --d:'Bebas Neue',Impact,sans-serif;
+  --s:'DM Serif Display',serif;
+  --b:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--b);background:var(--navy);color:var(--white);overflow-x:hidden}
+
+/* ── TOPBAR ── */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 2.5rem;
+  background:rgba(12,26,58,.95);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.tb-logo{font-family:var(--d);font-size:1.4rem;letter-spacing:.1em}
+.tb-logo span{color:var(--red)}
+.tb-tag{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.tb-cta{
+  font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:.55rem 1.4rem;background:var(--red);color:var(--white);
+  border:none;cursor:pointer;text-decoration:none;transition:background .2s;
+}
+.tb-cta:hover{background:var(--red2)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:7rem 3rem 5rem;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 75% 65% at 70% 25%, rgba(21,101,192,.22) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 55% at 15% 80%, rgba(198,40,40,.14) 0%, transparent 60%),
+    linear-gradient(155deg,#0C1A3A 0%,#142248 55%,#0C1A3A 100%);
+}
+.hero-bg::before{
+  content:'';position:absolute;inset:0;
+  background-image:repeating-linear-gradient(-52deg,transparent,transparent 70px,rgba(255,255,255,.02) 70px,rgba(255,255,255,.02) 71px);
+}
+.hero-slash{
+  position:absolute;right:0;top:0;bottom:0;width:40%;
+  background:linear-gradient(160deg,transparent 35%,rgba(229,57,53,.07) 100%);
+  border-left:1px solid rgba(229,57,53,.12);
+  clip-path:polygon(20% 0,100% 0,100% 100%,0% 100%);
+}
+.hero-content{position:relative;max-width:820px}
+.hero-eyebrow{
+  font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--red);margin-bottom:1rem;
+  animation:fadeUp .6s .1s both;
+}
+.hero-title{
+  font-family:var(--d);font-size:clamp(4.5rem,8vw,8.5rem);
+  line-height:.9;letter-spacing:.02em;margin-bottom:1.5rem;
+  animation:fadeUp .7s .2s both;
+}
+.hero-title .r{color:var(--red)}
+.hero-sub{
+  font-family:var(--s);font-style:italic;font-size:1.25rem;
+  color:var(--muted);max-width:540px;line-height:1.65;margin-bottom:2.8rem;
+  animation:fadeUp .7s .35s both;
+}
+.hero-stats{
+  display:flex;gap:2.5rem;flex-wrap:wrap;
+  animation:fadeUp .7s .5s both;
+}
+.hstat-n{font-family:var(--d);font-size:3.2rem;color:var(--white);line-height:1}
+.hstat-n span{color:var(--red)}
+.hstat-l{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.hdiv{width:1px;background:rgba(255,255,255,.1);align-self:stretch}
+.hero-scroll{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  animation:fadeUp .7s .8s both;
+}
+.scroll-arrow{width:1px;height:40px;background:linear-gradient(to bottom,var(--red),transparent)}
+
+/* ── SECTIONS ── */
+section{padding:7rem 3rem}
+.inner{max-width:1140px;margin:0 auto}
+.sec-label{font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:.7rem}
+.sec-title{font-family:var(--d);font-size:clamp(2.8rem,4.5vw,4.5rem);line-height:.95;letter-spacing:.02em;margin-bottom:1rem}
+.sec-sub{font-family:var(--s);font-style:italic;color:var(--muted);font-size:1.05rem;line-height:1.7;max-width:600px}
+
+/* ── ROCKET PROOF ── */
+.proof-section{background:#070F24}
+.proof-arena{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;
+  align-items:center;max-width:900px;margin:3rem auto;
+}
+.proof-side{text-align:center}
+.proof-logo{font-size:1.2rem;font-weight:700;margin-bottom:1rem;color:rgba(255,255,255,.6)}
+.proof-num{font-family:var(--d);font-size:clamp(6rem,10vw,10rem);line-height:1}
+.proof-num.human{color:var(--red)}
+.proof-num.ai{color:var(--greenl)}
+.proof-label{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-top:.6rem}
+.proof-label.human{color:rgba(229,57,53,.7)}
+.proof-label.ai{color:rgba(105,240,174,.7)}
+.proof-vs{font-family:var(--d);font-size:2.8rem;color:rgba(255,255,255,.12)}
+.proof-winner{
+  max-width:700px;margin:0 auto;
+  padding:1.2rem 2rem;
+  background:rgba(105,240,174,.06);border:1px solid rgba(105,240,174,.18);
+  text-align:center;
+  font-family:var(--s);font-style:italic;font-size:1rem;color:#A5D6A7;line-height:1.65;
+}
+.proof-chips{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin:1.5rem 0}
+.chip{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.4rem 1rem;border:1px solid rgba(255,255,255,.1);color:var(--muted)}
+
+/* ── PROBLEM / FIX ── */
+.pf-section{background:var(--off);color:var(--text)}
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+.pf-col-label{font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.2rem}
+.pf-col-label.today{color:var(--red)}
+.pf-col-label.fix{color:var(--green)}
+.pf-card{
+  padding:1.3rem;border:1px solid #D4E2F0;background:var(--white);
+  margin-bottom:.9rem;display:flex;gap:1rem;align-items:flex-start;
+}
+.pf-num{font-family:var(--d);font-size:2.4rem;color:#DDE8F8;min-width:2.5rem;line-height:1}
+.pf-card-title{font-size:.82rem;font-weight:700;color:var(--navy);margin-bottom:.3rem}
+.pf-card-body{font-size:.88rem;color:#445A7A;line-height:1.65}
+.pf-fix-card{
+  padding:1.3rem;border:1px solid #D4E2F0;background:var(--white);
+  margin-bottom:.9rem;display:flex;gap:1rem;align-items:flex-start;
+}
+.pf-icon-circle{
+  width:46px;height:46px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;flex-shrink:0;
+}
+.quote-bar{
+  margin-top:2.5rem;padding:1.2rem 1.8rem;
+  background:var(--navy);color:#A8C4E0;
+  font-family:var(--s);font-style:italic;font-size:.95rem;line-height:1.7;
+}
+
+/* ══════════════════════════════════════════════
+   RCS DEMO SECTION
+══════════════════════════════════════════════ */
+.rcs-section{
+  background:linear-gradient(160deg,#07122A 0%,#0C1A3A 50%,#07122A 100%);
+  position:relative;overflow:hidden;
+}
+.rcs-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 60% at 80% 30%,rgba(0,102,51,.15) 0%,transparent 60%);
+}
+.rcs-layout{
+  display:grid;grid-template-columns:1fr 380px;gap:4.5rem;
+  align-items:start;position:relative;
+}
+.rcs-context{}
+.rcs-context .sec-title{color:var(--white)}
+.rcs-context p{font-size:.95rem;color:rgba(255,255,255,.62);line-height:1.8;margin-bottom:1rem}
+.rcs-points{margin:1.8rem 0;display:flex;flex-direction:column;gap:.75rem}
+.rcs-point{
+  display:flex;gap:.9rem;align-items:flex-start;
+  padding:1rem 1.2rem;background:rgba(255,255,255,.04);
+  border-left:3px solid var(--emu-green);
+}
+.rcs-point-icon{font-size:1rem;flex-shrink:0}
+.rcs-point-text{font-size:.88rem;line-height:1.6;color:rgba(255,255,255,.68)}
+.rcs-point-text strong{color:var(--white)}
+.rcs-bottom-bar{
+  padding:1rem 1.3rem;background:rgba(0,102,51,.15);
+  border:1px solid rgba(0,102,51,.3);
+  font-size:.78rem;color:#A5D6A7;
+}
+
+/* ── PHONE ── */
+.phone-wrap{display:flex;justify-content:center;position:sticky;top:100px}
+.phone{
+  width:360px;
+  background:#1C1C1E;border-radius:44px;padding:14px;
+  box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.07);
+}
+.phone-notch{
+  width:120px;height:30px;background:#1C1C1E;
+  border-radius:0 0 20px 20px;margin:0 auto 8px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.notch-cam{width:9px;height:9px;border-radius:50%;background:#2C2C2E}
+.notch-spk{width:46px;height:5px;border-radius:3px;background:#2C2C2E}
+.phone-screen{
+  background:#000;border-radius:32px;overflow:hidden;
+  display:flex;flex-direction:column;min-height:620px;
+}
+.phone-status{
+  background:#1C1C1E;padding:8px 20px 6px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:13px;font-weight:700;color:#fff;font-family:var(--b);
+}
+.phone-status-icons{display:flex;gap:3px;font-size:10px}
+
+/* RCS header with EMU Block E */
+.rcs-hdr{
+  background:#1C1C1E;padding:10px 14px 12px;
+  display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+/* EMU Block E logo - SVG inline */
+.emu-avatar{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  background:var(--emu-green);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  box-shadow:0 0 0 2px rgba(0,102,51,.5);
+}
+.emu-block-e{
+  font-family:var(--d);font-size:22px;color:#FFD700;letter-spacing:-1px;font-weight:900;
+  line-height:1;text-shadow:1px 1px 0 rgba(0,0,0,.4);
+}
+.emu-verified{
+  position:absolute;bottom:-1px;right:-1px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--blue2);border:2px solid #1C1C1E;
+  display:flex;align-items:center;justify-content:center;
+  font-size:7px;color:#fff;
+}
+.rcs-hdr-info{}
+.rcs-hdr-name{font-size:14px;font-weight:700;color:#fff;font-family:var(--b)}
+.rcs-hdr-sub{font-size:11px;color:#8E8E93;font-family:var(--b)}
+.rcs-back{color:#0A84FF;font-size:14px;margin-right:2px}
+
+/* Chat area */
+.rcs-chat{
+  flex:1;padding:12px;display:flex;flex-direction:column;gap:6px;
+  background:#000;overflow-y:auto;min-height:400px;
+  scrollbar-width:none;
+}
+.rcs-chat::-webkit-scrollbar{display:none}
+.msg-time{text-align:center;font-size:10px;color:#636366;margin:4px 0;font-family:var(--b)}
+
+/* Bubbles */
+.bubble{max-width:80%;padding:9px 13px;border-radius:18px;font-size:13px;line-height:1.45;font-family:var(--b)}
+.bubble.out{align-self:flex-end;background:#006AFF;color:#fff;border-bottom-right-radius:4px}
+.bubble.in{align-self:flex-start;background:#1C1C1E;color:#fff;border-bottom-left-radius:4px}
+
+/* Typing */
+.typing{align-self:flex-start;background:#1C1C1E;padding:10px 14px;border-radius:18px;border-bottom-left-radius:4px;display:flex;gap:4px;align-items:center}
+.typing span{width:6px;height:6px;border-radius:50%;background:#636366;animation:bounce .9s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+/* Rich cards */
+.rich-card{
+  align-self:flex-start;width:calc(80% + 8px);
+  background:#1A1A2E;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(30,136,229,.2);
+}
+.rich-card-img{
+  height:100px;
+  background:linear-gradient(135deg,var(--emu-dark) 0%,var(--emu-green) 55%,#FFD700 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.2rem;position:relative;
+}
+.rich-card-img-label{
+  position:absolute;bottom:5px;left:8px;
+  font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);background:rgba(0,0,0,.45);padding:2px 6px;border-radius:2px;
+}
+.rich-card-body{padding:9px 12px 6px}
+.rich-card-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px;font-family:var(--b)}
+.rich-card-desc{font-size:11px;color:#8E8E93;line-height:1.4;font-family:var(--b)}
+.rich-card-price{font-size:17px;font-weight:700;color:var(--greenl);margin:5px 0 8px;font-family:var(--b)}
+.rich-card-save{font-size:10px;color:#8E8E93;font-weight:400}
+.rich-card-actions{display:flex;border-top:1px solid rgba(255,255,255,.07)}
+.rca{
+  flex:1;padding:10px 6px;font-size:13px;font-weight:700;
+  background:transparent;border:none;cursor:pointer;font-family:var(--b);
+  transition:background .2s;
+}
+.rca.buy{color:var(--greenl)}
+.rca.info{color:#0A84FF;border-left:1px solid rgba(255,255,255,.07)}
+.rca:hover{background:rgba(255,255,255,.05)}
+
+/* Payment card */
+.pay-card{
+  align-self:flex-start;width:calc(80% + 8px);
+  background:#1C1C1E;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(0,102,51,.3);
+}
+.pay-header{
+  background:linear-gradient(135deg,var(--emu-dark),var(--emu-green));
+  padding:12px;display:flex;align-items:center;gap:8px;
+}
+.pay-header-text{font-size:12px;font-weight:700;color:#fff;font-family:var(--b)}
+.pay-header-sub{font-size:10px;color:rgba(255,255,255,.7);font-family:var(--b)}
+.pay-items{padding:10px 12px}
+.pay-item{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-family:var(--b);font-size:12px;color:#ccc}
+.pay-item:last-child{border-bottom:none;font-weight:700;color:#fff;font-size:13px}
+.pay-item span:last-child{color:var(--greenl)}
+.pay-btn{
+  margin:8px 12px 12px;width:calc(100% - 24px);padding:11px;
+  background:var(--emu-green);color:#fff;font-size:13px;font-weight:700;
+  border:none;border-radius:10px;cursor:pointer;font-family:var(--b);
+  transition:background .2s;
+}
+.pay-btn:hover{background:var(--emu-dark)}
+
+/* Confirm bubble */
+.confirm-card{
+  align-self:flex-start;width:calc(80% + 8px);
+  background:#0A2012;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(105,240,174,.25);padding:12px;
+}
+.confirm-card-title{font-size:13px;font-weight:700;color:var(--greenl);margin-bottom:6px;font-family:var(--b)}
+.confirm-card-item{font-size:11px;color:rgba(255,255,255,.65);padding:2px 0;font-family:var(--b)}
+
+/* NIL upsell card */
+.nil-card{
+  align-self:flex-start;width:calc(80% + 8px);
+  background:#1A1A2E;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(249,168,37,.2);
+}
+.nil-header{background:linear-gradient(135deg,#1A1100,#3A2800);padding:10px 12px}
+.nil-title{font-size:13px;font-weight:700;color:#FFD700;font-family:var(--b)}
+.nil-sub{font-size:11px;color:rgba(255,215,0,.6);font-family:var(--b)}
+.nil-body{padding:8px 12px 4px;font-size:11px;color:#aaa;line-height:1.5;font-family:var(--b)}
+.nil-actions{display:flex;border-top:1px solid rgba(255,255,255,.06)}
+.nil-btn{flex:1;padding:10px 6px;font-size:12px;font-weight:700;background:transparent;border:none;cursor:pointer;font-family:var(--b)}
+.nil-btn.yes{color:#FFD700}
+.nil-btn.skip{color:#636366;border-left:1px solid rgba(255,255,255,.06)}
+
+/* Merch upsell */
+.merch-card{
+  align-self:flex-start;width:calc(80% + 8px);
+  background:#1A1A2E;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(0,106,255,.2);
+}
+.merch-imgs{display:flex;gap:0;height:75px}
+.merch-img{flex:1;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.merch-img:first-child{background:linear-gradient(135deg,var(--emu-dark),#005528)}
+.merch-img:last-child{background:linear-gradient(135deg,#1A1A2E,#2A2A40)}
+.merch-body{padding:8px 12px 4px}
+.merch-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px;font-family:var(--b)}
+.merch-row{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.merch-price{font-size:15px;font-weight:700;color:var(--greenl);font-family:var(--b)}
+.merch-was{font-size:11px;color:#636366;text-decoration:line-through;font-family:var(--b)}
+.merch-badge{font-size:9px;font-weight:700;background:var(--red);color:#fff;padding:2px 5px;border-radius:2px}
+.merch-actions{display:flex;border-top:1px solid rgba(255,255,255,.06)}
+.merch-btn{flex:1;padding:10px 6px;font-size:12px;font-weight:700;background:transparent;border:none;cursor:pointer;font-family:var(--b)}
+.merch-btn.yes{color:#0A84FF}
+.merch-btn.skip{color:#636366;border-left:1px solid rgba(255,255,255,.06)}
+
+/* input bar */
+.rcs-input-bar{
+  background:#1C1C1E;padding:8px 12px;
+  display:flex;align-items:center;gap:8px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.rcs-input{
+  flex:1;background:#2C2C2E;border:none;border-radius:18px;
+  padding:8px 14px;font-size:13px;color:#fff;font-family:var(--b);outline:none;
+}
+.rcs-send{
+  width:32px;height:32px;border-radius:50%;background:var(--emu-green);
+  border:none;cursor:pointer;font-size:14px;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* replay button */
+.replay-btn{
+  margin:1.5rem auto 0;display:block;
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:.65rem 1.6rem;background:transparent;color:var(--muted);
+  border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:all .2s;
+}
+.replay-btn:hover{color:var(--white);border-color:rgba(255,255,255,.4)}
+
+/* ── USE CASES ── */
+.uc-section{background:var(--off);color:var(--text)}
+.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.uc-card{
+  background:var(--white);border:1px solid #D4E2F0;padding:1.8rem;
+  transition:border-color .25s,transform .2s,box-shadow .25s;position:relative;overflow:hidden;
+}
+.uc-card:hover{border-color:rgba(229,57,53,.35);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+.uc-stripe{position:absolute;top:0;left:0;right:0;height:3px}
+.uc-icon{font-size:1.6rem;margin-bottom:1rem}
+.uc-title{font-family:var(--d);font-size:1.4rem;letter-spacing:.04em;color:var(--navy);margin-bottom:.5rem}
+.uc-body{font-size:.85rem;line-height:1.7;color:#445A7A}
+
+/* ── PILOT ── */
+.pilot-section{background:var(--navy)}
+.pilot-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start;margin-top:3rem}
+.pilot-pts{display:flex;flex-direction:column;gap:.9rem;margin-top:2rem}
+.pilot-pt{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1rem 1.3rem;background:rgba(105,240,174,.05);
+  border-left:3px solid var(--greenl);
+}
+.pilot-pt strong{display:block;font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.pilot-pt span{font-size:.82rem;color:var(--muted)}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
+.metric{padding:1.2rem;background:var(--navy2);border:1px solid rgba(255,255,255,.07);text-align:center}
+.metric-n{font-family:var(--d);font-size:2.4rem;color:var(--gold);line-height:1}
+.metric-l{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.ga-block{background:var(--navy2);border:1px solid rgba(249,168,37,.2);padding:1.5rem}
+.ga-title{font-family:var(--d);font-size:1.5rem;letter-spacing:.06em;color:var(--gold);margin-bottom:.5rem}
+.ga-desc{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem}
+.ga-tiles{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06)}
+.ga-tile{background:var(--navy);padding:1rem;transition:background .2s}
+.ga-tile:hover{background:var(--navy3)}
+.ga-tile-cat{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:2px}
+.ga-tile-name{font-family:var(--d);font-size:1rem;letter-spacing:.04em}
+
+/* ── TEAM ── */
+.team-section{background:var(--navy2)}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:3rem}
+.tcard{
+  background:var(--navy3);padding:2.5rem;position:relative;overflow:hidden;
+  transition:background .25s;
+}
+.tcard:hover{background:#213567}
+.tcard::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--red);transition:width .3s}
+.tcard:hover::before{width:5px}
+.tcard-jersey{
+  position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);
+  font-family:var(--d);font-size:9rem;color:rgba(255,255,255,.04);line-height:1;user-select:none;
+}
+.tcard-tag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);border:1px solid rgba(229,57,53,.3);padding:.2rem .55rem;margin-bottom:1rem}
+.tcard-name{font-family:var(--d);font-size:2.6rem;letter-spacing:.03em;line-height:1;margin-bottom:.2rem}
+.tcard-role{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+.tcard-bio{font-size:.88rem;color:rgba(255,255,255,.62);line-height:1.75;margin-bottom:1.2rem}
+.tcard-badges{display:flex;flex-wrap:wrap;gap:.4rem}
+.badge{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .6rem;border-radius:2px}
+.badge-sport{background:rgba(249,168,37,.1);color:var(--gold);border:1px solid rgba(249,168,37,.2)}
+.badge-school{background:rgba(30,136,229,.1);color:#90CAF9;border:1px solid rgba(30,136,229,.2)}
+.badge-default{background:rgba(255,255,255,.05);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.08)}
+
+/* ── CTA ── */
+.cta-section{
+  background:var(--red);padding:6rem 3rem;text-align:center;
+}
+.cta-title{font-family:var(--d);font-size:clamp(3rem,6vw,6rem);line-height:.95;letter-spacing:.02em;margin-bottom:1rem}
+.cta-sub{font-family:var(--s);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.75);margin-bottom:2.5rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.cta-btn-primary{
+  font-size:.78rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  padding:1rem 2.6rem;background:var(--white);color:var(--red);
+  border:none;cursor:pointer;text-decoration:none;transition:transform .15s;
+}
+.cta-btn-primary:hover{transform:translateY(-2px)}
+.cta-btn-sec{
+  font-size:.78rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  padding:1rem 2.6rem;background:transparent;color:var(--white);
+  border:2px solid rgba(255,255,255,.5);cursor:pointer;text-decoration:none;transition:border-color .2s;
+}
+.cta-btn-sec:hover{border-color:#fff}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  section{padding:5rem 1.5rem}
+  .hero{padding:6rem 1.5rem 4rem}
+  .pf-grid,.rcs-layout,.pilot-grid,.team-grid{grid-template-columns:1fr;gap:2.5rem}
+  .uc-grid{grid-template-columns:1fr 1fr}
+  .phone-wrap{margin-top:2rem;position:static;width:100%}
+  .phone{width:100%;max-width:360px;margin:0 auto}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .ga-tiles{grid-template-columns:1fr 1fr}
+  .proof-chips{gap:.75rem}
+}
+@media(max-width:640px){
+  .topbar{padding:.8rem 1.2rem}
+  .tb-tag{display:none}
+  .tb-logo{font-size:1.2rem}
+  .tb-cta{padding:.45rem .9rem;font-size:.62rem}
+  .hero-title{font-size:clamp(3.2rem,12vw,4.5rem)}
+  .hero-sub{font-size:1rem}
+  .hero-stats{gap:1.2rem;flex-wrap:wrap}
+  .hstat-n{font-size:2.4rem}
+  .hdiv{display:none}
+  .hero-scroll{display:none}
+  .uc-grid{grid-template-columns:1fr}
+  .proof-arena{grid-template-columns:1fr;gap:1.2rem}
+  .proof-num{font-size:clamp(5rem,18vw,8rem)}
+  .proof-chips{flex-direction:column;align-items:center}
+  .chip{width:100%;text-align:center}
+  .sec-title{font-size:clamp(2.2rem,8vw,3.5rem)}
+  .phone{max-width:100%}
+  .rcs-bottom-bar{font-size:.72rem;line-height:1.6}
+  .replay-btn{width:100%}
+  .team-grid{grid-template-columns:1fr}
+  .tcard{padding:1.8rem}
+  .tcard-jersey{font-size:6rem}
+  .tcard-name{font-size:2rem}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .ga-tiles{grid-template-columns:1fr}
+  .hero{min-height:auto;padding:5.5rem 1.2rem 3rem}
+  .proof-winner{padding:.9rem 1.2rem;font-size:.9rem}
+  .cta-section{padding:4rem 1.5rem}
+  .cta-title{font-size:clamp(2.5rem,10vw,4rem)}
+  .quote-bar{font-size:.88rem;padding:1rem 1.2rem}
+  .pf-card,.pf-fix-card{padding:1rem}
+  .pf-num{font-size:2rem;min-width:2rem}
+  .ga-block{padding:1.2rem}
+  section{padding:4rem 1.2rem}
+}
+@media(max-width:400px){
+  .hero-title{font-size:2.8rem}
+  .tb-cta{display:none}
+  .phone{border-radius:28px}
+  .phone-screen{min-height:500px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <div class="tb-logo">STRUCT<span>U</span>RELY</div>
+  <div class="tb-tag">× PlayFly Sports</div>
+  <a href="#rcs" class="tb-cta">See the Demo →</a>
+</nav>
+
+<!-- ════════════════════════════
+     HERO
+════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-slash"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Structurely × PlayFly Sports</p>
+    <h1 class="hero-title">AI Built For<br>The <span class="r">Revenue</span><br>Game.</h1>
+    <p class="hero-sub">Born at the largest call center in America. Led by athletes. Built to sell tickets, drive donations, and unify every fan relationship — at scale.</p>
+    <div class="hero-stats">
+      <div>
+        <div class="hstat-n">300<span>+</span></div>
+        <div class="hstat-l">Active Clients</div>
+      </div>
+      <div class="hdiv"></div>
+      <div>
+        <div class="hstat-n">30M<span>+</span></div>
+        <div class="hstat-l">Conversations / Mo</div>
+      </div>
+      <div class="hdiv"></div>
+      <div>
+        <div class="hstat-n">61<span>.1%</span></div>
+        <div class="hstat-l">AI Conversion Rate</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll to explore</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     ROCKET PROOF
+════════════════════════════ -->
+<section class="proof-section">
+  <div class="inner">
+    <p class="sec-label reveal" style="text-align:center">Rocket Companies Case Study · Text + Call AI · n = 115,075 Leads · Sept 2024 – Sept 2025</p>
+    <h2 class="sec-title reveal" style="text-align:center;color:var(--white)">Structurely Converts<br>Leads Better Than Humans.</h2>
+    <div class="proof-arena reveal d2">
+      <div class="proof-side">
+        <div class="proof-logo">🚀 Rocket<br><small style="font-weight:400;font-size:.85rem;color:var(--muted)">Human Call Center</small></div>
+        <div class="proof-num human">49.7%</div>
+        <div class="proof-label human">Contact to Conversion Rate</div>
+      </div>
+      <div class="proof-vs">VS.</div>
+      <div class="proof-side">
+        <div class="proof-logo">⚡ Structurely AI<br><small style="font-weight:400;font-size:.85rem;color:var(--muted)">Text + Call AI</small></div>
+        <div class="proof-num ai">61.1%</div>
+        <div class="proof-label ai">Contact to Conversion Rate</div>
+      </div>
+    </div>
+    <div class="proof-chips reveal d3">
+      <span class="chip"><strong style="color:var(--white)">+11.4 pts</strong> over human reps</span>
+      <span class="chip"><strong style="color:var(--white)">50/50 split</strong> · new leads only</span>
+      <span class="chip">PlayFly's threshold is <strong style="color:var(--white)">10%</strong>. This is the floor.</span>
+    </div>
+    <div class="proof-winner reveal d4">"PlayFly's threshold is 10% lift. We beat trained human call center reps by 11.4 points at Rocket. That number is the floor, not the ceiling."</div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     PROBLEM + FIX
+════════════════════════════ -->
+<section class="pf-section">
+  <div class="inner">
+    <p class="sec-label reveal">The Problem</p>
+    <h2 class="sec-title reveal" style="color:var(--navy)">Fan Revenue Is<br>Trapped. Scale Is<br>Impossible. Until Now.</h2>
+    <div class="pf-grid">
+      <div>
+        <p class="pf-col-label today reveal">TODAY — The Gaps</p>
+        <div class="pf-card reveal d1">
+          <div class="pf-num">01</div>
+          <div><div class="pf-card-title">3 Separate Teams</div><div class="pf-card-body">Ticket sales, merch, and fundraising each reach the same fan with zero visibility into what the others said or offered.</div></div>
+        </div>
+        <div class="pf-card reveal d2">
+          <div class="pf-num">02</div>
+          <div><div class="pf-card-title">CRM Blind Spots</div><div class="pf-card-body">Paciolan tracks transactions, not conversations. If Scott got a call, had lunch with a rep, and was pitched a donation — nobody else knows.</div></div>
+        </div>
+        <div class="pf-card reveal d3">
+          <div class="pf-num">03</div>
+          <div><div class="pf-card-title">Missed Bundling</div><div class="pf-card-body">The upsell chain — tickets → merch → NIL → hospitality — is completely untapped.</div></div>
+        </div>
+        <div class="pf-card reveal d4">
+          <div class="pf-num">04</div>
+          <div>
+            <div class="pf-card-title">Scale Is Physically Impossible</div>
+            <div class="pf-card-body">4 reps dialing 40–50 calls a day reach <strong style="color:var(--navy)">180 people daily</strong>. To work through a 200,000-person database, that's <strong style="color:var(--red)">1,100+ days — over 3 years</strong> — before you've called everyone once. By then the season is long over.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="pf-col-label fix reveal">WITH STRUCTURELY — 1 Engine</p>
+        <div class="pf-fix-card reveal d1">
+          <div class="pf-icon-circle" style="background:rgba(30,136,229,.12)"><span style="color:var(--blue2)">💬</span></div>
+          <div><div class="pf-card-title">One AI Thread</div><div class="pf-card-body">All outreach to a fan runs through a single AI — aware of every prior touch across every team, every channel.</div></div>
+        </div>
+        <div class="pf-fix-card reveal d2">
+          <div class="pf-icon-circle" style="background:rgba(249,168,37,.12)"><span>📊</span></div>
+          <div><div class="pf-card-title">Smart Cross-Sell</div><div class="pf-card-body">Buy tickets → AI offers merch. Attend game → AI surfaces a suite upgrade or donation ask in the same conversation.</div></div>
+        </div>
+        <div class="pf-fix-card reveal d3">
+          <div class="pf-icon-circle" style="background:rgba(67,160,71,.12)"><span style="color:var(--green)">🎙️</span></div>
+          <div><div class="pf-card-title">Call &amp; SMS Transcription</div><div class="pf-card-body">AI transcribes and summarizes every call, and saves all call summaries into your CRM.</div></div>
+        </div>
+        <div class="pf-fix-card reveal d4">
+          <div class="pf-icon-circle" style="background:rgba(229,57,53,.1)"><span style="color:var(--red)">⚡</span></div>
+          <div>
+            <div class="pf-card-title">Ultimate Scale — 24/7, Automatic</div>
+            <div class="pf-card-body">Structurely works your entire database simultaneously — <strong style="color:var(--navy)">200,000 fans in days, not years</strong>. Custom call cadences built from call-center expertise we know drive revenue. The right message, the right channel, the right moment. Around the clock.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="quote-bar reveal">
+      "Everything is tied together — if Corey owns a business, he should be a sponsor, a donor, and a merchandise buyer. Today it goes to 3 different people."
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     RCS LIVE DEMO
+════════════════════════════ -->
+<section class="rcs-section" id="rcs">
+  <div class="inner">
+    <div class="rcs-layout">
+      <div class="rcs-context">
+        <p class="sec-label reveal">Live Demo — RCS Text AI</p>
+        <h2 class="sec-title reveal">Watch the AI<br>Sell a Fan<br>In Real Time.</h2>
+        <p class="reveal d1">This is Aria — Structurely's AI fan engagement agent, deployed for EMU Eagles Athletics. Watch her open a conversation, present the season ticket offer, close the sale inline, then upsell a NIL donation and cross-sell merchandise — all without a human rep touching the thread.</p>
+
+        <!-- EMPHASIS CALLOUT -->
+        <div class="reveal d1" style="margin:1.5rem 0;background:var(--navy);border:2px solid var(--emu-green);padding:1.4rem 1.6rem;position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--emu-green),var(--gold),var(--red))"></div>
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--emu-green);margin-bottom:.7rem">The entire transaction happens inside SMS</div>
+          <div style="display:flex;gap:0;margin-bottom:.9rem;flex-wrap:wrap">
+            <div style="flex:1;min-width:80px;text-align:center;padding:.7rem .5rem;background:rgba(0,102,51,.15);border:1px solid rgba(0,102,51,.3)">
+              <div style="font-size:1.4rem;margin-bottom:.3rem">🎟️</div>
+              <div style="font-size:.72rem;font-weight:700;color:var(--white);line-height:1.3">Buy<br>Tickets</div>
+              <div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">$2,500</div>
+            </div>
+            <div style="width:1px;background:rgba(255,255,255,.08)"></div>
+            <div style="flex:1;min-width:80px;text-align:center;padding:.7rem .5rem;background:rgba(249,168,37,.08);border:1px solid rgba(249,168,37,.2)">
+              <div style="font-size:1.4rem;margin-bottom:.3rem">💛</div>
+              <div style="font-size:.72rem;font-weight:700;color:var(--white);line-height:1.3">Donate<br>NIL</div>
+              <div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">$100</div>
+            </div>
+            <div style="width:1px;background:rgba(255,255,255,.08)"></div>
+            <div style="flex:1;min-width:80px;text-align:center;padding:.7rem .5rem;background:rgba(30,136,229,.1);border:1px solid rgba(30,136,229,.2)">
+              <div style="font-size:1.4rem;margin-bottom:.3rem">👕</div>
+              <div style="font-size:.72rem;font-weight:700;color:var(--white);line-height:1.3">Buy<br>Merch</div>
+              <div style="font-size:.65rem;color:var(--muted);margin-top:.2rem">$94</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:rgba(105,240,174,.08);border:1px solid rgba(105,240,174,.2)">
+            <div style="font-size:.78rem;color:rgba(255,255,255,.65)">Total revenue — one conversation</div>
+            <div style="font-family:var(--d);font-size:1.6rem;color:var(--greenl);letter-spacing:.04em">$2,694</div>
+          </div>
+          <div style="margin-top:.75rem;font-size:.8rem;color:var(--muted);line-height:1.6">No app download. No redirect to a website. No human rep. The fan buys, donates, and orders gear <strong style="color:var(--white)">without ever leaving the message thread.</strong></div>
+        </div>
+
+        <div class="rcs-points reveal d2">
+          <div class="rcs-point">
+            <div class="rcs-point-icon">🦅</div>
+            <div class="rcs-point-text"><strong>Verified EMU Sender</strong> — RCS delivers confirmed branding with the Block E logo, verified business badge, and rich media. No spoofing. No generic SMS.</div>
+          </div>
+          <div class="rcs-point">
+            <div class="rcs-point-icon">🎟️</div>
+            <div class="rcs-point-text"><strong>Season Ticket Close — $2,500</strong> — All 7 home games, reserved mid-field seats, free parking, full tailgate (food, wine & beer), and priority suite access for one game. Fan reviews and confirms inline.</div>
+          </div>
+          <div class="rcs-point">
+            <div class="rcs-point-icon">💛</div>
+            <div class="rcs-point-text"><strong>NIL Donation Upsell — $100</strong> — After the ticket close, Aria surfaces the Week of Excellence NIL contribution at exactly the right moment.</div>
+          </div>
+          <div class="rcs-point">
+            <div class="rcs-point-icon">👕</div>
+            <div class="rcs-point-text"><strong>Merch Cross-Sell at 25% Off</strong> — Signed jersey ($64) and EMU cap ($30) offered inline as a season ticket holder exclusive. Ships free.</div>
+          </div>
+        </div>
+
+        <div class="rcs-bottom-bar reveal d3">
+          Touch #3 of 7–10 · RCS Provisioned for EMU · will work without Paciolan API · Paciolan CSV Import Day One
+        </div>
+
+        <button class="replay-btn" onclick="restartDemo()">↺ Replay Demo</button>
+      </div>
+
+      <!-- PHONE -->
+      <div class="phone-wrap reveal d2">
+        <div>
+          <div class="phone">
+            <div class="phone-notch">
+              <div class="notch-cam"></div>
+              <div class="notch-spk"></div>
+            </div>
+            <div class="phone-screen">
+              <div class="phone-status">
+                <span style="font-size:14px;font-weight:700">9:41</span>
+                <span></span>
+                <div class="phone-status-icons"><span>▶</span><span>▶▶</span><span>🔋</span></div>
+              </div>
+
+              <!-- RCS Header -->
+              <div class="rcs-hdr">
+                <div class="emu-avatar" style="background:#006633;padding:0;overflow:hidden;position:relative">
+                  <img src="data:image/png;base64,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" alt="EMU Block E" style="width:100%;height:100%;object-fit:cover;display:block" />
+                  <div class="emu-verified">✓</div>
+                </div>
+                <div class="rcs-hdr-info">
+                  <div class="rcs-hdr-name">Aria · EMU Athletics</div>
+                  <div class="rcs-hdr-sub">Verified Business · Structurely AI</div>
+                </div>
+              </div>
+
+              <!-- Chat -->
+              <div class="rcs-chat" id="chat">
+                <div class="msg-time">Today · 10:14 AM</div>
+              </div>
+
+              <div class="rcs-input-bar">
+                <input class="rcs-input" placeholder="Message EMU Athletics" readonly>
+                <button class="rcs-send">➤</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     USE CASES
+════════════════════════════ -->
+<section class="uc-section">
+  <div class="inner">
+    <p class="sec-label reveal">Built for PlayFly's Revenue Lines</p>
+    <h2 class="sec-title reveal" style="color:var(--navy)">Every Product PlayFly Sells —<br>Structurely Opens the Conversation.</h2>
+    <p class="sec-sub reveal d1">60 campuses. Pro teams. LIV Golf. MLB & NBA sponsorships.</p>
+    <div class="uc-grid">
+      <div class="uc-card reveal d1"><div class="uc-stripe" style="background:#1565C0"></div><div class="uc-icon">🎟️</div><div class="uc-title">Ticket Sales</div><div class="uc-body">Outbound SMS + AI voice to season ticket prospects, renewals, and group ticket upsells — built to hit that 10% lift threshold.</div></div>
+      <div class="uc-card reveal d2"><div class="uc-stripe" style="background:#2E7D32"></div><div class="uc-icon">👕</div><div class="uc-title">Merchandise</div><div class="uc-body">In-thread upsell links during the ticket journey. "You just bought tickets — grab the jersey." Feels personal, not automated.</div></div>
+      <div class="uc-card reveal d3"><div class="uc-stripe" style="background:#6A1B9A"></div><div class="uc-icon">🎓</div><div class="uc-title">Donations & NIL</div><div class="uc-body">Fundraising cadences for athletic foundations. Week of Excellence drives. NIL donor cultivation. In process with MSU Spartan Venture Fund.</div></div>
+      <div class="uc-card reveal d4"><div class="uc-stripe" style="background:#E53935"></div><div class="uc-icon">🤝</div><div class="uc-title">Sponsorships</div><div class="uc-body">7–10 touch outreach to business owner alums — the trifecta prospect who should be a sponsor, donor, and merch buyer simultaneously.</div></div>
+      <div class="uc-card reveal d5"><div class="uc-stripe" style="background:#F9A825"></div><div class="uc-icon">🏟️</div><div class="uc-title">Hospitality</div><div class="uc-body">Suite packages, tailgate experiences, alumni road trip packages. AI qualifies every lead — your reps close the high-value deals.</div></div>
+      <div class="uc-card reveal d6"><div class="uc-stripe" style="background:#1565C0"></div><div class="uc-icon">🔗</div><div class="uc-title">Unified Fan Hub</div><div class="uc-body">One AI thread ties tickets + merch + donations + NIL + sponsorships together — PlayFly's central maximizer vision, realized.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     EMU PILOT + GAMEABOVE
+════════════════════════════ -->
+<section class="pilot-section">
+  <div class="inner">
+    <div class="pilot-grid">
+      <div>
+        <p class="sec-label reveal" style="color:#69F0AE">The EMU Pilot</p>
+        <h2 class="sec-title reveal">A Shared Connection.<br>A Clean Test.<br>A Proof Point<br>That Travels.</h2>
+        <p class="sec-sub reveal d1" style="max-width:100%">EMU Alumni, built-in trust and speed to launch. EMU and MSU serve as the proving ground: real data, real benchmarking against existing conversion.</p>
+        <div class="pilot-pts reveal d2">
+          <div class="pilot-pt"><span style="font-size:1.2rem;flex-shrink:0">🏈</span><div><strong>Alumni trust speeds launch</strong><span>EMU connection = fastest path from deal to live campaign</span></div></div>
+          <div class="pilot-pt"><span style="font-size:1.2rem;flex-shrink:0">📊</span><div><strong>Real 3rd-party benchmark</strong><span>Define what PlayFly would charge an outside vendor. Measure lift against it.</span></div></div>
+          <div class="pilot-pt"><span style="font-size:1.2rem;flex-shrink:0">📱</span><div><strong>RCS provisioned for EMU</strong><span>Richer, more personal messaging — ahead of any competitor in this space</span></div></div>
+          <div class="pilot-pt"><span style="font-size:1.2rem;flex-shrink:0">🔗</span><div><strong>Paciolan CSV — day one</strong><span>No API needed. Import fan data, run campaigns, show results. API path mapped for Phase 2.</span></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="metrics-grid reveal d1">
+          <div class="metric"><div class="metric-n">10%+</div><div class="metric-l">Ticket Lift Target</div></div>
+          <div class="metric"><div class="metric-n">7–10</div><div class="metric-l">Touches per Fan</div></div>
+          <div class="metric"><div class="metric-n">RCS</div><div class="metric-l">SMS Channel</div></div>
+          <div class="metric"><div class="metric-n">5</div><div class="metric-l">Schools in Network</div></div>
+        </div>
+        <div class="ga-block reveal d2">
+          <div class="ga-title">GAMEABOVE CAPITAL</div>
+          <div class="ga-desc">Strategic backer with ownership and relationships spanning professional sports, collegiate athletics, and global golf — Structurely's market access advantage.</div>
+          <div class="ga-tiles">
+            <div class="ga-tile"><div class="ga-tile-cat">Pro Sports</div><div class="ga-tile-name">Detroit Amps · MLS · NHL</div></div>
+            <div class="ga-tile"><div class="ga-tile-cat">Global Golf</div><div class="ga-tile-name">LIV Golf · PGA</div></div>
+            <div class="ga-tile"><div class="ga-tile-cat">Collegiate Pilot</div><div class="ga-tile-name">EMU · MSU</div></div>
+            <div class="ga-tile"><div class="ga-tile-cat">Collegiate</div><div class="ga-tile-name">Oakland · Wayne State · Michigan · Michigan State · EMU</div></div>
+            <div class="ga-tile"><div class="ga-tile-cat">Racing</div><div class="ga-tile-name">McLaren F1</div></div>
+            <div class="ga-tile"><div class="ga-tile-cat">Bowl Game Host</div><div class="ga-tile-name">GameAbove Sports Bowl</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     TEAM
+════════════════════════════ -->
+<section class="team-section">
+  <div class="inner">
+    <p class="sec-label reveal">Leadership</p>
+    <h2 class="sec-title reveal">Athletes Who Know<br>How to Close.</h2>
+    <div class="team-grid">
+      <div class="tcard reveal d1">
+        <div class="tcard-jersey">26</div>
+        <span class="tcard-tag">CEO · Owner</span>
+        <h3 class="tcard-name">Corey Welch</h3>
+        <p class="tcard-role">CEO · Owner / CEO · GameAbove Board Member</p>
+        <p class="tcard-bio">Former EMU football player — #26. Built his career at Rocket Companies across performance marketing and AI. GameAbove board member, CapStone Holdings partner. Acquired Structurely to bring call-center-grade AI to sports revenue.</p>
+        <div class="tcard-badges">
+          <span class="badge badge-sport">🏈 EMU Football</span>
+          <span class="badge badge-school">Eastern Michigan</span>
+          <span class="badge badge-default">Rocket Companies</span>
+          <span class="badge badge-default">GameAbove</span>
+        </div>
+      </div>
+      <div class="tcard reveal d2">
+        <div class="tcard-jersey">1</div>
+        <span class="tcard-tag">CRO</span>
+        <h3 class="tcard-name">Max Wegner</h3>
+        <p class="tcard-role">Chief Revenue Officer</p>
+        <p class="tcard-bio">Former MSU wrestler. 18 years as an executive at Rocket Companies — SME in go-to-market call centers and customer success. Leads all sales, partnerships, and vertical expansion for Structurely's push into collegiate and professional sports.</p>
+        <div class="tcard-badges">
+          <span class="badge badge-sport">🤼 MSU Wrestling</span>
+          <span class="badge badge-school">Michigan State</span>
+          <span class="badge badge-default">18 Yrs Rocket</span>
+          <span class="badge badge-default">Revenue Ops</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     CTA
+════════════════════════════ -->
+<section class="cta-section">
+  <div class="inner">
+    <h2 class="cta-title reveal">Let's Build<br>The Pilot.</h2>
+    <div class="cta-btns reveal d2" style="display:none"></div>
+    <p style="margin-top:2rem;font-size:.78rem;color:rgba(255,255,255,.5);letter-spacing:.08em">
+      Corey Welch, CEO · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a495d6a595e585f495e5f584f465304494547">[email&#160;protected]</a> · EMU Football Alum · GameAbove / Capstone Holdings
+    </p>
+  </div>
+</section>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── SCROLL REVEAL ──────────────────────────────────────────────────────────
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ══════════════════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════════════════
+// RCS DEMO ENGINE — Auto-looping, non-interactive
+// ══════════════════════════════════════════════════════════════════════════
+const chat = document.getElementById('chat');
+let demoTimeouts = [];
+let loopTimer = null;
+
+function clearDemo() {
+  demoTimeouts.forEach(t => clearTimeout(t));
+  if (loopTimer) clearTimeout(loopTimer);
+  demoTimeouts = [];
+  loopTimer = null;
+  chat.innerHTML = '<div class="msg-time">Today · 10:14 AM</div>';
+}
+
+function t(fn, ms) {
+  const id = setTimeout(fn, ms);
+  demoTimeouts.push(id);
+  return id;
+}
+
+function scrollChat() {
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function addMsg(text, type, ms) {
+  t(() => {
+    const typing = chat.querySelector('.typing');
+    if (typing) typing.remove();
+    const b = document.createElement('div');
+    b.className = `bubble ${type}`;
+    b.textContent = text;
+    b.style.cssText = 'opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s';
+    chat.appendChild(b);
+    scrollChat();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      b.style.opacity = '1';
+      b.style.transform = 'none';
+    }));
+  }, ms);
+}
+
+function addTyping(ms) {
+  t(() => {
+    const prev = chat.querySelector('.typing');
+    if (prev) prev.remove();
+    const el = document.createElement('div');
+    el.className = 'typing';
+    el.innerHTML = '<span></span><span></span><span></span>';
+    chat.appendChild(el);
+    scrollChat();
+  }, ms);
+}
+
+function addEl(html, ms) {
+  t(() => {
+    const typing = chat.querySelector('.typing');
+    if (typing) typing.remove();
+    const wrap = document.createElement('div');
+    wrap.innerHTML = html;
+    const el = wrap.firstElementChild;
+    el.style.cssText = 'opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s';
+    chat.appendChild(el);
+    scrollChat();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    }));
+  }, ms);
+}
+
+function addTimestamp(text, ms) {
+  t(() => {
+    const el = document.createElement('div');
+    el.className = 'msg-time';
+    el.textContent = text;
+    chat.appendChild(el);
+    scrollChat();
+  }, ms);
+}
+
+function addReadReceipt(time, ms) {
+  t(() => {
+    const el = document.createElement('div');
+    el.style.cssText = 'align-self:flex-end;font-size:10px;color:#636366;font-family:var(--b);margin-top:-2px';
+    el.textContent = `Read · ${time}`;
+    chat.appendChild(el);
+    scrollChat();
+  }, ms);
+}
+
+// ── CARD HTML ─────────────────────────────────────────────────────────────
+const richCardHTML = `
+<div class="rich-card">
+  <div class="rich-card-img">🦅<span class="rich-card-img-label">EMU EAGLES — 2025 SEASON</span></div>
+  <div class="rich-card-body">
+    <div class="rich-card-title">Season Ticket Package — 2 Seats</div>
+    <div class="rich-card-desc">All 7 home games · Reserved mid-field seats · Free reserved parking · Complimentary tailgate (food, wine & beer) · Priority suite access for 1 game</div>
+    <div class="rich-card-price">$2,500 <span class="rich-card-save">· $357/game · Includes full tailgate + suite access</span></div>
+  </div>
+  <div class="rich-card-actions">
+    <button class="rca buy" style="cursor:default">Buy Now 🎟️</button>
+    <button class="rca info" style="cursor:default;color:#0A84FF">Package Details</button>
+  </div>
+</div>`;
+
+const confirmHTML = `
+<div class="pay-card">
+  <div class="pay-header">
+    <div style="font-size:1.6rem">🦅</div>
+    <div><div class="pay-header-text">EMU Eagles — 2025 Season Tickets</div><div class="pay-header-sub">Secure Checkout · Powered by Structurely</div></div>
+  </div>
+  <div class="pay-items">
+    <div class="pay-item"><span>2 Reserved Mid-Field Seats (7 games)</span><span>$2,100</span></div>
+    <div class="pay-item"><span>Reserved Parking Pass (all 7 games)</span><span>$200</span></div>
+    <div class="pay-item"><span>Tailgate Access (food, wine &amp; beer)</span><span>$140</span></div>
+    <div class="pay-item"><span>Priority Suite Access (1 game)</span><span>$200</span></div>
+    <div class="pay-item"><span>Season Ticket Holder Discount</span><span style="color:#E53935">−$140</span></div>
+    <div class="pay-item"><span>Total</span><span>$2,500</span></div>
+  </div>
+  <button class="pay-btn" style="cursor:default;background:#005528">✓ Order Confirmed — $2,500</button>
+</div>`;
+
+const orderConfirmHTML = `
+<div class="confirm-card">
+  <div class="confirm-card-title">✅ Season Tickets Confirmed!</div>
+  <div class="confirm-card-item">🎟️ 2 Seats — All 7 Home Games, Mid-Field</div>
+  <div class="confirm-card-item">🅿️ Reserved Parking — Every Game</div>
+  <div class="confirm-card-item">🍖 Tailgate Access — Food, Wine &amp; Beer</div>
+  <div class="confirm-card-item">🏟️ Priority Suite Access — 1 Game of Your Choice</div>
+  <div class="confirm-card-item" style="margin-top:4px;color:var(--greenl)">$2,500 charged · Order #EMU-STH-2025-0084</div>
+</div>`;
+
+const nilCardHTML = `
+<div class="nil-card">
+  <div class="nil-header">
+    <div class="nil-title">🏆 Week of Excellence — NIL Fund</div>
+    <div class="nil-sub">Support EMU Student Athletes Directly</div>
+  </div>
+  <div class="nil-body">As a season ticket holder, add a $100 NIL contribution — goes directly to current Eagles athletes on the field. Tax records provided.</div>
+  <div class="nil-actions">
+    <button class="nil-btn yes" style="cursor:default">✓ $100 Added 💛</button>
+    <button class="nil-btn skip" style="cursor:default;color:#555">Skip</button>
+  </div>
+</div>`;
+
+const nilConfirmHTML = `
+<div class="confirm-card">
+  <div class="confirm-card-title" style="color:#FFD700">💛 NIL Donation Confirmed!</div>
+  <div class="confirm-card-item">$100 contribution to EMU Athletics NIL Fund</div>
+  <div class="confirm-card-item">Goes directly to current Eagles student athletes</div>
+  <div class="confirm-card-item">Acknowledgment letter sent to scott.m@email.com</div>
+</div>`;
+
+const merchCardHTML = `
+<div class="merch-card">
+  <div class="merch-imgs">
+    <div class="merch-img">🦅</div>
+    <div class="merch-img">🧢</div>
+  </div>
+  <div class="merch-body">
+    <div class="merch-title">Season Ticket Holder Exclusive — 25% Off</div>
+    <div class="merch-row">
+      <span class="merch-price">$64</span>
+      <span class="merch-was">$85</span>
+      <span class="merch-badge">25% OFF</span>
+    </div>
+    <div style="font-size:11px;color:#8E8E93;font-family:var(--b)">Signed jersey ($64) or EMU fitted cap ($30). Both ship free to you.</div>
+  </div>
+  <div class="merch-actions">
+    <button class="merch-btn yes" style="cursor:default">✓ Jersey + Cap Added →</button>
+    <button class="merch-btn skip" style="cursor:default;color:#555">No Thanks</button>
+  </div>
+</div>`;
+
+const finalConfirmHTML = `
+<div class="confirm-card">
+  <div class="confirm-card-title">👕 Gear Order Confirmed!</div>
+  <div class="confirm-card-item">Signed EMU Eagles Jersey — $64 (was $85)</div>
+  <div class="confirm-card-item">EMU Fitted Cap — $30 (was $40)</div>
+  <div class="confirm-card-item">Free shipping · Arrives in 5–7 days</div>
+</div>`;
+
+// ── LOOP ───────────────────────────────────────────────────────────────────
+const LOOP_TOTAL = 52000;
+
+function runDemo() {
+  clearDemo();
+
+  // Beat 1 — Aria opens with season ticket angle
+  addTyping(600);
+  addMsg("Hey Scott — it's Aria from EMU Eagles Athletics! 🦅 We're releasing 2025 season ticket packages to alumni first, before they open to the public. Do you have 60 seconds?", 'in', 2000);
+
+  // Beat 2 — Fan is open
+  addMsg("Yeah — what are we talking?", 'out', 4200);
+
+  // Beat 3 — Aria pitches the full package
+  addTyping(5000);
+  addMsg("So the 2025 Season Ticket Package is $2,500 for two seats — that's all seven home games, reserved mid-field, free parking every game, full tailgate access with food, wine and beer, and priority suite access for one game of your choice. It's the full experience.", 'in', 6600);
+
+  // Beat 4 — Fan is interested, pushes on price
+  addMsg("That's a serious package. $2,500 is a stretch though — what makes it worth it?", 'out', 10000);
+
+  // Beat 5 — Aria sells the value
+  addTyping(10800);
+  addMsg("When you break it down, it's $357 a game — and that includes tailgate food, drinks, and parking every single time. The suite game alone would run $500+ if you bought it separately. Most of our holders tell us it's the best value they've found for a full season experience.", 'in', 12400);
+
+  // Beat 6 — Fan says go
+  addMsg("Okay, you sold me. Send me the package details.", 'out', 15600);
+
+  // Beat 7 — Rich card
+  addTyping(16400);
+  addMsg("Here's the full breakdown 👇", 'in', 17800);
+  addEl(richCardHTML, 18700);
+
+  // Beat 8 — Aria confirms purchase
+  addEl(confirmHTML, 21500);
+  addEl(orderConfirmHTML, 22800);
+  addReadReceipt("10:24 AM", 23400);
+
+  // Beat 9 — NIL upsell
+  addTyping(24800);
+  addMsg("Awesome — you're locked in! One more thing while I have you: EMU's Week of Excellence NIL campaign is live right now. A $100 contribution goes directly to the athletes you'll be watching all season. Want to add it on?", 'in', 26300);
+  addEl(nilCardHTML, 27400);
+
+  // Beat 10 — Fan adds NIL
+  addMsg("Sure, throw it on. I've been wanting to give back.", 'out', 30200);
+  addEl(nilConfirmHTML, 31300);
+
+  // Beat 11 — Merch cross-sell
+  addTyping(32500);
+  addMsg("Last thing — as a season ticket holder you get 25% off fan gear today only. Signed jersey is $64 (normally $85), fitted cap is $30. Both ship free. Want to grab either?", 'in', 34000);
+  addEl(merchCardHTML, 35100);
+
+  // Beat 12 — Fan adds merch
+  addMsg("Let's do the jersey and the cap.", 'out', 38200);
+  addEl(finalConfirmHTML, 39400);
+  addReadReceipt("10:31 AM", 40000);
+
+  // Beat 13 — Wrap
+  addTyping(41200);
+  addMsg("You're all set, Scott! Tickets ✅  NIL Donation ✅  Gear ✅  Welcome back to the Eagles family — see you at Rynearson! 🦅", 'in', 42600);
+
+  // Summary
+  t(() => {
+    addTimestamp("Total Revenue: $2,694  ·  0 Human Reps Required  ·  ~4 min conversation", 0);
+  }, 44500);
+
+  // Loop
+  loopTimer = setTimeout(() => {
+    chat.style.transition = 'opacity .7s';
+    chat.style.opacity = '0';
+    setTimeout(() => {
+      chat.style.opacity = '1';
+      chat.style.transition = '';
+      runDemo();
+    }, 800);
+  }, LOOP_TOTAL);
+}
+
+// Auto-start when phone scrolls into view
+const phoneObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      setTimeout(() => runDemo(), 600);
+      phoneObs.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+phoneObs.observe(document.querySelector('.phone'));
+
+function restartDemo() {
+  runDemo();
+}
+</script>
+</body>
+</html>
